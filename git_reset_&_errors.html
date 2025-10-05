@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Reset & Fix Errors Guide</title>
+    <link rel="stylesheet" href="git_reset_&_errors.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔄 Git Reset & Fix Errors Guide</h1>
+            <p>Previous commit pe wapas jaane aur errors fix karne ka complete guide</p>
+        </header>
+
+        <div class="content">
+            <h2>🔍 Commit Hash Kaise Dhundhe?</h2>
+
+            <h3>Puri History Dekho</h3>
+            <pre><code>git log</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>commit a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0
+Author: Your Name &lt;your.email@example.com&gt;
+Date:   Mon Oct 5 14:30:25 2025 +0530
+
+    Buggy commit with errors
+
+commit f6a30648a7b9c1d2e3f4g5h6i7j8k9l0m1n2o3p4
+Author: Your Name &lt;your.email@example.com&gt;
+Date:   Mon Oct 5 10:15:10 2025 +0530
+
+    Previous working commit
+
+commit e9d8c7b6a5f4g3h2i1j0k9l8m7n6o5p4q3r2s1t0
+Author: Your Name &lt;your.email@example.com&gt;
+Date:   Sun Oct 4 16:45:30 2025 +0530
+
+    Added new feature</code></pre>
+            </div>
+
+            <h3>Short History (Recommended)</h3>
+            <pre><code>git log --oneline</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>a1b2c3d Buggy commit with errors
+f6a3064 Previous working commit
+e9d8c7b Added new feature
+c5d4e3f Initial commit</code></pre>
+            </div>
+
+            <h3>Last 5 Commits</h3>
+            <pre><code>git log --oneline -5</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>a1b2c3d Buggy commit with errors
+f6a3064 Previous working commit
+e9d8c7b Added new feature
+c5d4e3f Updated documentation
+b2a1c0d Initial commit</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>💡 Tip:</strong> Jo commit chahiye uska hash copy karo (e.g., <code>f6a3064</code>)
+            </div>
+
+            <h2>📌 Kab Use Karein?</h2>
+            <ul>
+                <li>Jab recent commits mein critical errors ho</li>
+                <li>Working version pe wapas jana ho</li>
+                <li>Previous stable commit se fresh start karna ho</li>
+                <li>History rewrite karni ho</li>
+            </ul>
+
+            <h2>🔧 Complete Process</h2>
+
+            <div class="step">
+                <h3><span class="step-number">1</span>Main Branch Pe Raho</h3>
+                <pre><code>git checkout main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Switched to branch 'main'
+Your branch is up to date with 'origin/main'.</code></pre>
+                </div>
+
+                <p><strong>Check karo ki aap sahi branch pe ho:</strong></p>
+                <pre><code>git branch</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>  dev
+* main
+  feature-branch</code></pre>
+                </div>
+
+                <div class="note">
+                    <strong>📝 Note:</strong> <code>*</code> (asterisk) current branch ko indicate karta hai
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">2</span>Previous Commit Ka Code Le Aao</h3>
+                <pre><code>git reset --hard &lt;previous_commit_hash&gt;</code></pre>
+
+                <h4>Example:</h4>
+                <pre><code>git reset --hard f6a3064</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>HEAD is now at f6a3064 Previous working commit</code></pre>
+                </div>
+
+                <div class="info-box">
+                    <h4>Kya Hoga:</h4>
+                    <ul>
+                        <li>✅ Main branch ka HEAD previous commit pe move ho jayega</li>
+                        <li>✅ History ab purane commit tak revert ho jayegi</li>
+                        <li>✅ Working directory bhi us commit ke code pe set ho jayegi</li>
+                        <li>✅ Detached HEAD state nahi hoga</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">3</span>Fix Errors</h3>
+                <p>Apna code edit karo aur errors fix karo:</p>
+                <ol>
+                    <li>Project files open karo</li>
+                    <li>Necessary changes karo</li>
+                    <li>Sabhi errors fix karo</li>
+                    <li>Code test karo</li>
+                </ol>
+
+                <div class="note">
+                    <strong>💡 Tip:</strong> Changes save karne ke baad <code>git status</code> se verify karo
+                </div>
+
+                <pre><code>git status</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   src/app.js
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">4</span>Stage Aur Commit</h3>
+
+                <h4>Sabhi changes stage karo:</h4>
+                <pre><code>git add .</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h4>Ya specific files add karo:</h4>
+                <pre><code>git add filename.txt</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h4>Commit karo:</h4>
+                <pre><code>git commit -m "Fix errors from previous commit"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>[main 1a2b3c4] Fix errors from previous commit
+ 2 files changed, 25 insertions(+), 10 deletions(-)
+ create mode 100644 src/new-file.js</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">5</span>Push Changes to Remote</h3>
+                <pre><code>git push origin main --force</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 567 bytes | 567.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+To https://github.com/username/project-name.git
+ + a1b2c3d...1a2b3c4 main -> main (forced update)</code></pre>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Important:</strong> <code>--force</code> zaruri hai kyunki aapne history change ki hai. Lekin yeh carefully use karein!
+                </div>
+            </div>
+
+            <h2>✅ Best Practices</h2>
+
+            <div class="info-box">
+                <h4>1. Backup banao pehle:</h4>
+                <pre><code>git branch backup-before-reset</code></pre>
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success - branch created)</code></pre>
+                </div>
+
+                <h4>2. Commit hash verify karo:</h4>
+                <p>Double-check karo kis commit pe jana hai</p>
+
+                <h4>3. Team ko inform karo:</h4>
+                <p>Force push se pehle batao</p>
+
+                <h4>4. Test karo:</h4>
+                <p>Reset ke baad test karo ki sab kaam kar raha hai</p>
+
+                <h4>5. Force-with-lease use karo:</h4>
+                <pre><code>git push origin main --force-with-lease</code></pre>
+                <p>Team projects mein yeh safer hai</p>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+...
+To https://github.com/username/project-name.git
+ + a1b2c3d...1a2b3c4 main -> main (forced update)</code></pre>
+                </div>
+            </div>
+
+            <h2>📝 Summary</h2>
+            <div class="flow-diagram">
+                Main Branch → Reset Hard → Fix Code → Add & Commit → Force Push<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                checkout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f6a3064&nbsp;&nbsp;&nbsp;&nbsp;edit files&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git add .&nbsp;&nbsp;&nbsp;&nbsp;--force
+            </div>
+
+        </div>
+
+        <footer>
+            <p>© 2025 Mohd Zahid Khan. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
