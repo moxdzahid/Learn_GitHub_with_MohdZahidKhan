@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commit Amend Guide</title>
+    <link rel="stylesheet" href="git_wrong_commit.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✏️ Git Commit Amend Guide</h1>
+            <p>Last commit ka message ya changes fix karne ka simple guide</p>
+        </header>
+
+        <div class="content">
+            <h2>📌 Kab Use Karein?</h2>
+            <ul>
+                <li>Jab last commit ka message galat ho gaya ho</li>
+                <li>Jab last commit mein galat files add ho gayi ho</li>
+                <li>Jab last commit mein kuch files add karna bhul gaye ho</li>
+                <li>Jab minor changes last commit mein hi add karne ho</li>
+            </ul>
+
+            <h2>🔧 Only Change Commit Message</h2>
+            <p>If you only want to fix the <strong>commit message</strong>:</p>
+
+            <pre><code>git commit --amend -m "new correct commit message"</code></pre>
+
+            <h3>Example:</h3>
+            <pre><code>git commit --amend -m "Fix login bug in authentication module"</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>[main 1a2b3c4] Fix login bug in authentication module
+ Date: Mon Oct 5 14:30:25 2025 +0530
+ 2 files changed, 15 insertions(+), 5 deletions(-)</code></pre>
+            </div>
+
+            <div class="info-box">
+                <h4>What happens:</h4>
+                <ul>
+                    <li>✅ Last commit message will change</li>
+                    <li>✅ Commit hash will change (becomes a new commit)</li>
+                    <li>✅ Files and changes remain the same</li>
+                </ul>
+            </div>
+
+            <h3>Verify the changes:</h3>
+            <pre><code>git log --oneline -1</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>1a2b3c4 Fix login bug in authentication module</code></pre>
+            </div>
+
+            <h2>📤 Push the Changes</h2>
+
+            <div class="step">
+                <h3>If Not Pushed Yet:</h3>
+                <pre><code>git push origin main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 456 bytes | 456.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/username/project-name.git
+   a1b2c3d..1a2b3c4  main -> main</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>If Already Pushed:</h3>
+                <pre><code>git push origin main --force</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 456 bytes | 456.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+To https://github.com/username/project-name.git
+ + a1b2c3d...1a2b3c4 main -> main (forced update)</code></pre>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Warning:</strong> <code>--force</code> use karne se pehle sure ho jao ki team members ne latest changes pull kar liye hain!
+                </div>
+            </div>
+
+            <h2>📝 Summary Flow</h2>
+            <div class="flow-diagram">
+                Wrong Commit → Amend → Push/Force Push<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+                git commit&nbsp;&nbsp;--amend&nbsp;&nbsp;--force (if needed)
+            </div>
+
+            <h2>💡 Pro Tips</h2>
+
+            <div class="info-box">
+                <h4>1. Amend Multiple Times:</h4>
+                <p>Ek hi commit ko multiple baar amend kar sakte ho (jab tak push nahi kiya)</p>
+                <pre><code>git commit --amend -m "First correction"
+git commit --amend -m "Second correction"
+git commit --amend -m "Final correction"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output (for each amend):</div>
+                    <pre><code>[main 1a2b3c4] Final correction
+ Date: Mon Oct 5 14:30:25 2025 +0530
+ 2 files changed, 15 insertions(+), 5 deletions(-)</code></pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>2. Check Before Push:</h4>
+                <p>Hamesha <code>git log</code> se verify karo push se pehle</p>
+                <pre><code>git log --oneline -3</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>1a2b3c4 Fix login bug in authentication module
+e9d8c7b Previous commit
+c5d4e3f Another commit</code></pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>3. Local Testing:</h4>
+                <p>Amend ke baad code test karo</p>
+                <pre><code># Run your tests
+npm test
+# or
+python -m pytest
+# or
+./run-tests.sh</code></pre>
+                <div class="note">
+                    <strong>💡 Tip:</strong> Testing ensure karta hai ki amend ke baad bhi code properly kaam kar raha hai
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>4. Avoid on Main Branch:</h4>
+                <p>Main branch pe amend avoid karo (especially pushed commits)</p>
+                <ul>
+                    <li>Feature branches pe use karo</li>
+                    <li>Team ke saath coordinate karo</li>
+                    <li>Shared branches pe careful raho</li>
+                </ul>
+            </div>
+
+            <h2>🎯 Additional Use Cases</h2>
+
+            <div class="step">
+                <h3>Adding Forgotten Files to Last Commit:</h3>
+                <p>Agar aap last commit mein koi file add karna bhul gaye:</p>
+
+                <pre><code># Pehle file ko stage karo
+git add forgotten-file.js
+
+# Phir amend karo (message same rahega)
+git commit --amend --no-edit</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>[main 1a2b3c4] Fix login bug in authentication module
+ Date: Mon Oct 5 14:30:25 2025 +0530
+ 3 files changed, 20 insertions(+), 5 deletions(-)
+ create mode 100644 forgotten-file.js</code></pre>
+                </div>
+
+                <div class="note">
+                    <strong>💡 Note:</strong> <code>--no-edit</code> flag commit message ko change nahi karta
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>Changing Both Message and Files:</h3>
+                <p>Message bhi change karna hai aur files bhi add karni hai:</p>
+
+                <pre><code># Files stage karo
+git add new-file.js updated-file.js
+
+# Amend with new message
+git commit --amend -m "Fix login bug and add validation"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>[main 1a2b3c4] Fix login bug and add validation
+ Date: Mon Oct 5 14:30:25 2025 +0530
+ 4 files changed, 35 insertions(+), 10 deletions(-)
+ create mode 100644 new-file.js</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3>Interactive Amend (Edit in Editor):</h3>
+                <p>Agar detailed message likhna hai editor mein:</p>
+
+                <pre><code>git commit --amend</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code># Your default editor will open with the commit message
+# Edit the message, save and close the editor
+
+[main 1a2b3c4] Fix login bug in authentication module
+
+Added proper error handling for login failures
+- Implemented try-catch blocks
+- Added user-friendly error messages
+- Updated tests
+
+ Date: Mon Oct 5 14:30:25 2025 +0530
+ 2 files changed, 15 insertions(+), 5 deletions(-)</code></pre>
+                </div>
+            </div>
+
+            <h2>⚠️ Important Warnings</h2>
+
+            <div class="warning">
+                <h4>Never Amend Pushed Commits on Shared Branches!</h4>
+                <ul>
+                    <li>❌ Main/Master branch pe amend avoid karo</li>
+                    <li>❌ Public branches pe amend dangerous hai</li>
+                    <li>✅ Apne feature branch pe amend safe hai</li>
+                    <li>✅ Push se pehle amend karna safe hai</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h4>Force Push Consequences:</h4>
+                <p>Force push karoge to:</p>
+                <ul>
+                    <li>Team members ko conflicts milenge</li>
+                    <li>History rewrite ho jayegi</li>
+                    <li>Coordination zaruri hai</li>
+                </ul>
+                <p><strong>Solution:</strong> <code>--force-with-lease</code> use karo for safety</p>
+                <pre><code>git push origin main --force-with-lease</code></pre>
+            </div>
+
+            <h2>🔄 Comparison: Amend vs Reset</h2>
+
+            <div class="info-box">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <th style="padding: 10px; text-align: left;">Feature</th>
+                            <th style="padding: 10px; text-align: left;">Amend</th>
+                            <th style="padding: 10px; text-align: left;">Reset</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Use Case</strong></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Fix last commit only</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Go back multiple commits</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Complexity</strong></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Simple</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">More complex</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Safety</strong></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">Safer</td>
+                            <td style="padding: 10px; border-bottom: 1px solid #ddd;">More risky</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;"><strong>Changes History</strong></td>
+                            <td style="padding: 10px;">Only last commit</td>
+                            <td style="padding: 10px;">Multiple commits</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>© 2025 Mohd Zahid Khan. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
