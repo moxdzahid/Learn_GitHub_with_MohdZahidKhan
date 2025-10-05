@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Contribution Guide</title>
+    <link rel="stylesheet" href="githubcontribution.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 GitHub Contribution Guide</h1>
+            <p>A complete guide to contributing to open-source projects on GitHub</p>
+        </header>
+
+        <div class="content">
+            <div class="toc">
+                <h3>📋 Table of Contents</h3>
+                <ul>
+                    <li><a href="#fork">🍴 Fork the Repository</a></li>
+                    <li><a href="#clone">💻 Clone to Local Machine</a></li>
+                    <li><a href="#navigate">📂 Navigate to Project Directory</a></li>
+                    <li><a href="#configure">⚙️ Configure Git</a></li>
+                    <li><a href="#changes">✏️ Make Changes</a></li>
+                    <li><a href="#push">📤 Push Changes</a></li>
+                    <li><a href="#pr">🔀 Create Pull Request</a></li>
+                    <li><a href="#sync">🔄 Sync Your Fork</a></li>
+                    <li><a href="#reference">📝 Quick Reference</a></li>
+                    <li><a href="#best-practices">🎯 Best Practices</a></li>
+                    <li><a href="#issues">🆘 Common Issues</a></li>
+                </ul>
+            </div>
+
+            <div class="step" id="fork">
+                <h2><span class="step-number">1</span>🍴 Fork the Repository</h2>
+                <ol>
+                    <li>Navigate to the project repository on GitHub</li>
+                    <li>Click the <strong>Fork</strong> button in the top-right corner</li>
+                    <li>The repository will be forked to your GitHub account</li>
+                </ol>
+                <div class="note">
+                    <strong>💡 What is Forking?</strong> Forking creates a personal copy of someone else's repository in your GitHub account. You can make changes to your fork without affecting the original project.
+                </div>
+            </div>
+
+            <div class="step" id="clone">
+                <h2><span class="step-number">2</span>💻 Clone to Local Machine</h2>
+                <p>Clone your forked repository to your local machine:</p>
+
+                <pre><code>git clone https://github.com/YOUR-USERNAME/PROJECT-NAME.git</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Cloning into 'PROJECT-NAME'...
+remote: Enumerating objects: 100, done.
+remote: Counting objects: 100% (100/100), done.
+remote: Compressing objects: 100% (75/75), done.
+remote: Total 100 (delta 25), reused 90 (delta 20), pack-reused 0
+Receiving objects: 100% (100/100), 45.67 KiB | 1.52 MiB/s, done.
+Resolving deltas: 100% (25/25), done.</code></pre>
+                </div>
+
+                <div class="note">
+                    <strong>📝 Note:</strong> Replace <code>YOUR-USERNAME</code> with your GitHub username and <code>PROJECT-NAME</code> with the repository name.
+                </div>
+            </div>
+
+            <div class="step" id="navigate">
+                <h2><span class="step-number">3</span>📂 Navigate to Project Directory</h2>
+
+                <pre><code>cd PROJECT-NAME</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(Directory changes to PROJECT-NAME, no text output)</code></pre>
+                </div>
+            </div>
+
+            <div class="step" id="configure">
+                <h2><span class="step-number">4</span>⚙️ Configure Git</h2>
+                
+                <h3>Set Username and Email for This Repository</h3>
+                <pre><code>git config user.name "Your Name"
+git config user.email "your.email@example.com"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h3>Set Globally for All Repositories</h3>
+                <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h3>Example Configuration</h3>
+                <div class="info-box">
+                    <p><strong>Repository Example:</strong> <a href="https://github.com/servicesmzkindustries-lab/leaning" target="_blank">https://github.com/servicesmzkindustries-lab/leaning</a></p>
+                    <p><strong>Username:</strong> servicesmzkindustries-lab</p>
+                    <p><strong>Email:</strong> servicesmzkindustries@gmail.com</p>
+                </div>
+
+                <pre><code>git config user.name "servicesmzkindustries-lab"
+git config user.email "servicesmzkindustries@gmail.com"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h3>Check Git Configuration</h3>
+
+                <h4>Check Local Repository Config:</h4>
+                <pre><code>git config user.name
+git config user.email</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>servicesmzkindustries-lab
+servicesmzkindustries@gmail.com</code></pre>
+                </div>
+
+                <h4>Check Global Configuration:</h4>
+                <pre><code>git config --global user.name
+git config --global user.email</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Your Global Name
+your.global@email.com</code></pre>
+                </div>
+
+                <h4>View Complete Configuration (Local + Global + System):</h4>
+                <pre><code>git config --list</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>user.name=servicesmzkindustries-lab
+user.email=servicesmzkindustries@gmail.com
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/servicesmzkindustries-lab/leaning.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+... (more configuration settings)</code></pre>
+                </div>
+
+                <h4>Get Specific Configuration Values:</h4>
+                <pre><code>git config --get user.name
+git config --get user.email</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>servicesmzkindustries-lab
+servicesmzkindustries@gmail.com</code></pre>
+                </div>
+            </div>
+
+            <div class="step" id="changes">
+                <h2><span class="step-number">5</span>✏️ Make Changes</h2>
+                
+                <ol>
+                    <li>Make your changes to the files</li>
+                    <li>Check the status of your changes:</li>
+                </ol>
+
+                <pre><code>git status</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+        modified:   README.md
+        modified:   src/index.js
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+        new-feature.js
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+                </div>
+            </div>
+
+            <div class="step" id="push">
+                <h2><span class="step-number">6</span>📤 Push Changes</h2>
+
+                <h3>Add Changes to Staging</h3>
+
+                <h4>Add Specific Files:</h4>
+                <pre><code>git add filename.txt</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h4>Or Add All Changes:</h4>
+                <pre><code>git add .</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h3>Commit Changes</h3>
+                <pre><code>git commit -m "Description of changes made"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>[main 1a2b3c4] Description of changes made
+ 3 files changed, 45 insertions(+), 12 deletions(-)
+ create mode 100644 new-feature.js</code></pre>
+                </div>
+
+                <h3>Push to Your Fork</h3>
+                <pre><code>git push origin main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 456 bytes | 456.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/YOUR-USERNAME/PROJECT-NAME.git
+   a1b2c3d..e4f5g6h  main -> main</code></pre>
+                </div>
+            </div>
+
+            <div class="step" id="pr">
+                <h2><span class="step-number">7</span>🔀 Create Pull Request</h2>
+                <ol>
+                    <li>Go to your forked repository on GitHub</li>
+                    <li>Click on <strong>Compare & pull request</strong> button</li>
+                    <li>Add a title and description for your PR</li>
+                    <li>Click <strong>Create pull request</strong></li>
+                    <li>Wait for the maintainer to review and merge your changes</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Pull Request Tips:</strong>
+                    <ul>
+                        <li>Write a clear, descriptive title</li>
+                        <li>Explain what changes you made and why</li>
+                        <li>Reference any related issues</li>
+                        <li>Be responsive to feedback from maintainers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step" id="sync">
+                <h2><span class="step-number">8</span>🔄 Sync Your Fork</h2>
+                <p>When the main project has new changes and you want to update your fork:</p>
+
+                <h3>Set Upstream URL (One-time Setup)</h3>
+                <pre><code>git remote add upstream https://github.com/ORIGINAL-OWNER/PROJECT-NAME.git</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>(No output means success)</code></pre>
+                </div>
+
+                <h4>Verify the Upstream Repository:</h4>
+                <pre><code>git remote -v</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>origin  https://github.com/YOUR-USERNAME/PROJECT-NAME.git (fetch)
+origin  https://github.com/YOUR-USERNAME/PROJECT-NAME.git (push)
+upstream        https://github.com/ORIGINAL-OWNER/PROJECT-NAME.git (fetch)
+upstream        https://github.com/ORIGINAL-OWNER/PROJECT-NAME.git (push)</code></pre>
+                </div>
+
+                <h3>Fetch and Merge Changes</h3>
+
+                <h4>Method 1: Fetch and Merge Separately</h4>
+
+                <p><strong>1. Fetch the latest changes from upstream:</strong></p>
+                <pre><code>git fetch upstream</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>remote: Enumerating objects: 15, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 12 (delta 6), reused 10 (delta 4), pack-reused 0
+Unpacking objects: 100% (12/12), 3.45 KiB | 353.00 KiB/s, done.
+From https://github.com/ORIGINAL-OWNER/PROJECT-NAME
+ * [new branch]      main       -> upstream/main
+ * [new branch]      dev        -> upstream/dev</code></pre>
+                </div>
+
+                <p><strong>2. Switch to your main branch:</strong></p>
+                <pre><code>git checkout main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Switched to branch 'main'
+Your branch is up to date with 'origin/main'.</code></pre>
+                </div>
+
+                <p><strong>3. Merge upstream changes:</strong></p>
+                <pre><code>git merge upstream/main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Updating a1b2c3d..e4f5g6h
+Fast-forward
+ README.md    | 10 ++++++++--
+ src/app.js   | 25 +++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+), 2 deletions(-)</code></pre>
+                </div>
+
+                <p><strong>4. Push updated main to your fork:</strong></p>
+                <pre><code>git push origin main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 890 bytes | 890.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/YOUR-USERNAME/PROJECT-NAME.git
+   a1b2c3d..e4f5g6h  main -> main</code></pre>
+                </div>
+
+                <h4>Method 2: Pull (Fetch + Merge in one command)</h4>
+
+                <p><strong>1. Pull changes from upstream (fetch + merge):</strong></p>
+                <pre><code>git pull upstream main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>From https://github.com/ORIGINAL-OWNER/PROJECT-NAME
+ * branch            main       -> FETCH_HEAD
+Updating a1b2c3d..e4f5g6h
+Fast-forward
+ README.md    | 10 ++++++++--
+ src/app.js   | 25 +++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+), 2 deletions(-)</code></pre>
+                </div>
+
+                <p><strong>2. Push updated main to your fork:</strong></p>
+                <pre><code>git push origin main</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 890 bytes | 890.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+To https://github.com/YOUR-USERNAME/PROJECT-NAME.git
+   a1b2c3d..e4f5g6h  main -> main</code></pre>
+                </div>
+            </div>
+
+            <div id="reference">
+                <h2>📝 Quick Reference Commands</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Command</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fork</td>
+                            <td>Click Fork button on GitHub</td>
+                        </tr>
+                        <tr>
+                            <td>Clone</td>
+                            <td><code>git clone &lt;repo-url&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td>Navigate</td>
+                            <td><code>cd PROJECT-NAME</code></td>
+                        </tr>
+                        <tr>
+                            <td>Configure user</td>
+                            <td><code>git config user.name "Name"</code></td>
+                        </tr>
+                        <tr>
+                            <td>Configure email</td>
+                            <td><code>git config user.email "email"</code></td>
+                        </tr>
+                        <tr>
+                            <td>Check status</td>
+                            <td><code>git status</code></td>
+                        </tr>
+                        <tr>
+                            <td>Stage changes</td>
+                            <td><code>git add .</code></td>
+                        </tr>
+                        <tr>
+                            <td>Commit</td>
+                            <td><code>git commit -m "message"</code></td>
+                        </tr>
+                        <tr>
+                            <td>Push</td>
+                            <td><code>git push origin main</code></td>
+                        </tr>
+                        <tr>
+                            <td>Add upstream</td>
+                            <td><code>git remote add upstream &lt;url&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td>Fetch upstream</td>
+                            <td><code>git fetch upstream</code></td>
+                        </tr>
+                        <tr>
+                            <td>Merge upstream</td>
+                            <td><code>git merge upstream/main</code></td>
+                        </tr>
+                        <tr>
+                            <td>Pull upstream</td>
+                            <td><code>git pull upstream main</code> (fetch + merge)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="best-practices">
+                <h2>🎯 Best Practices</h2>
+                <div class="info-box">
+                    <ul>
+                        <li>✅ Write clear and descriptive commit messages</li>
+                        <li>✅ Keep your fork synced with the original repository</li>
+                        <li>✅ Test your changes before creating a pull request</li>
+                        <li>✅ Follow the project's contribution guidelines</li>
+                        <li>✅ Create a new branch for each feature or bug fix</li>
+                        <li>✅ Make small, focused commits</li>
+                        <li>✅ Review your changes before committing</li>
+                        <li>✅ Be responsive to code review feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="issues">
+                <h2>🆘 Common Issues</h2>
+
+                <div class="warning">
+                    <h4>Problem: Push Rejected</h4>
+                    <p><strong>Solution:</strong></p>
+                    <pre><code>git pull origin main
+git push origin main</code></pre>
+                    <div class="output">
+                        <div class="output-title">✅ Expected Output:</div>
+                        <pre><code>From https://github.com/YOUR-USERNAME/PROJECT-NAME
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+...
+To https://github.com/YOUR-USERNAME/PROJECT-NAME.git
+   a1b2c3d..e4f5g6h  main -> main</code></pre>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <h4>Problem: Merge Conflicts</h4>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Manually resolve conflicts in the affected files</li>
+                        <li>Stage the resolved files: <code>git add .</code></li>
+                        <li>Complete the merge: <code>git commit</code></li>
+                    </ol>
+                    <div class="output">
+                        <div class="output-title">✅ Expected Output (during conflict):</div>
+                        <pre><code>Auto-merging file.txt
+CONFLICT (content): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+                    </div>
+                    <div class="output">
+                        <div class="output-title">✅ Expected Output (after resolving):</div>
+                        <pre><code>[main 1a2b3c4] Merge branch 'main' of https://github.com/ORIGINAL-OWNER/PROJECT-NAME
+ 1 file changed, 5 insertions(+), 2 deletions(-)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>© 2025 Mohd Zahid Khan. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
