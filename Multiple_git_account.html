@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple GitHub Accounts Setup Guide</title>
+    <link rel="stylesheet" href="Multiple_git_account.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Multiple GitHub Accounts Setup</h1>
+            <p>Complete Guide with SSH Keys on Windows</p>
+        </header>
+
+        <div class="content">
+            <h2>📚 What is SSH?</h2>
+            <p>SSH (Secure Shell) is a cryptographic network protocol that provides a secure way to access and communicate with remote servers over an unsecured network. Originally developed as a replacement for insecure protocols like Telnet and rsh, SSH encrypts all communications between client and server, ensuring data confidentiality and integrity.</p>
+
+            <h2>🎯 Why is SSH Used?</h2>
+            <p>SSH serves multiple critical purposes in modern computing:</p>
+
+            <div class="info-box">
+                <h4>🔒 Security</h4>
+                <p>SSH encrypts all data transmitted between client and server, protecting sensitive information like passwords, commands, and file transfers from eavesdropping and man-in-the-middle attacks.</p>
+
+                <h4>🔑 Authentication</h4>
+                <p>SSH supports multiple authentication methods including password-based authentication and public-key cryptography. Public-key authentication is particularly secure as it uses a pair of cryptographic keys (public and private) instead of passwords.</p>
+
+                <h4>🌐 Remote Access</h4>
+                <p>SSH enables secure remote login to servers, allowing administrators and developers to manage systems from anywhere in the world safely.</p>
+
+                <h4>📁 File Transfer</h4>
+                <p>SSH provides secure file transfer capabilities through SCP (Secure Copy Protocol) and SFTP (SSH File Transfer Protocol).</p>
+
+                <h4>🔄 Port Forwarding</h4>
+                <p>SSH can create secure tunnels for other network services, effectively extending secure access to various applications and services.</p>
+
+                <h4>💻 Git and Version Control</h4>
+                <p>Modern version control systems like Git use SSH for secure repository access, allowing developers to clone, push, and pull code securely without repeatedly entering passwords.</p>
+            </div>
+
+            <h2>🚀 Why SSH Keys for GitHub?</h2>
+            <p>GitHub recommends SSH keys over HTTPS authentication for several reasons:</p>
+            <ul>
+                <li><strong>Enhanced Security:</strong> No passwords transmitted over the network</li>
+                <li><strong>Convenience:</strong> No need to enter credentials repeatedly once properly configured</li>
+                <li><strong>Automation Friendly:</strong> Perfect for CI/CD pipelines and automated deployments</li>
+                <li><strong>Account Separation:</strong> Allows easy management of multiple GitHub accounts on the same machine</li>
+            </ul>
+
+            <h2>📋 Overview</h2>
+            <p>This setup allows you to:</p>
+            <ul>
+                <li>Manage multiple GitHub accounts (personal, work, etc.)</li>
+                <li>Use different SSH keys for different accounts</li>
+                <li>Switch between accounts without authentication issues</li>
+                <li>Keep your work and personal repositories separate</li>
+            </ul>
+
+            <h2>✅ Prerequisites</h2>
+            <ul>
+                <li>Git installed on Windows</li>
+                <li>GitHub accounts (personal and work)</li>
+                <li>Command line access (Git Bash, PowerShell, or Command Prompt)</li>
+                <li>OpenSSH Authentication Agent service enabled (covered in setup steps)</li>
+            </ul>
+
+            <h2>🛠️ Step-by-Step Setup</h2>
+
+            <div class="step">
+                <h3><span class="step-number">1</span>Enable OpenSSH Authentication Agent Service</h3>
+                <p>Before generating SSH keys, you need to enable the OpenSSH Authentication Agent service:</p>
+                <ol>
+                    <li>Press <code>Win + R</code> to open Run dialog</li>
+                    <li>Type <code>services.msc</code> and press Enter</li>
+                    <li>In the Services window, search for "OpenSSH Authentication Agent"</li>
+                    <li>Right-click on "OpenSSH Authentication Agent" and select "Properties"</li>
+                    <li>Change the "Startup type" from "Disabled" to "Automatic"</li>
+                    <li>Click "Apply" and then "OK"</li>
+                    <li>Right-click on the service again and select "Start" to start the service immediately</li>
+                </ol>
+                <div class="note">
+                    <strong>💡 Why this is important:</strong> The SSH Agent service manages your SSH keys in memory, allowing you to authenticate without entering your passphrase repeatedly.
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">2</span>Generate SSH Keys for Each Account</h3>
+                <p>Create separate SSH keys for each GitHub account:</p>
+
+                <h4>Personal Account:</h4>
+                <pre><code># Generate SSH key for personal account
+ssh-keygen -t rsa -C "zahid12311@gmail.com" -f "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal
+Your public key has been saved in C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal.pub
+The key fingerprint is:
+SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx zahid12311@gmail.com
+The key's randomart image is:
++---[RSA 3072]----+
+|                 |
+|                 |
+|                 |
++----[SHA256]-----+</code></pre>
+                </div>
+
+                <h4>Work Account:</h4>
+                <pre><code># Generate SSH key for work account
+ssh-keygen -t rsa -C "servicesmzkindustries@gmail.com" -f "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test
+Your public key has been saved in C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test.pub
+The key fingerprint is:
+SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx servicesmzkindustries@gmail.com
+The key's randomart image is:
++---[RSA 3072]----+
+|                 |
+|                 |
+|                 |
++----[SHA256]-----+</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">3</span>Display Public Keys</h3>
+                <p>Copy the public keys to add them to your respective GitHub accounts:</p>
+
+                <pre><code># Display personal account public key
+cat "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal.pub"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... zahid12311@gmail.com</code></pre>
+                </div>
+
+                <pre><code># Display work account public key
+cat "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test.pub"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... servicesmzkindustries@gmail.com</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">4</span>Add Public Keys to GitHub</h3>
+                <ol>
+                    <li>Copy each public key output</li>
+                    <li>Go to GitHub → Settings → SSH and GPG keys</li>
+                    <li>Click "New SSH key"</li>
+                    <li>Paste the public key and give it a descriptive name</li>
+                    <li>Repeat for each account</li>
+                </ol>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">5</span>Configure SSH Agent</h3>
+                <p>Clear existing keys and add your new keys:</p>
+
+                <pre><code># List current SSH keys
+ssh-add -l</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output (if keys exist):</div>
+                    <pre><code>3072 SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx zahid12311@gmail.com (RSA)
+3072 SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx servicesmzkindustries@gmail.com (RSA)</code></pre>
+                </div>
+
+                <div class="output">
+                    <div class="output-title">✅ Or (if no keys):</div>
+                    <pre><code>The agent has no identities.</code></pre>
+                </div>
+
+                <pre><code># Clear all existing keys
+ssh-add -D</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>All identities removed.</code></pre>
+                </div>
+
+                <pre><code># Add personal account key
+ssh-add "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Identity added: C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal (zahid12311@gmail.com)</code></pre>
+                </div>
+
+                <pre><code># Add work account key
+ssh-add "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test"</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Identity added: C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test (servicesmzkindustries@gmail.com)</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">6</span>Create SSH Config File</h3>
+                <p>Create an SSH configuration file to manage multiple accounts:</p>
+
+                <h4>Creating the SSH Config File:</h4>
+                <ol>
+                    <li>Navigate to your SSH directory:
+                        <pre><code>cd C:\Users\mohdz\.ssh</code></pre>
+                        
+                        <div class="note">
+                            <strong>📝 Note:</strong> If the <code>.ssh</code> folder doesn't exist, create it first:
+                            <pre><code>mkdir C:\Users\mohdz\.ssh</code></pre>
+                            <div class="output">
+                                <div class="output-title">✅ Expected Output:</div>
+                                <pre><code>(No output means the directory was created successfully)</code></pre>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>Open the <code>.ssh</code> directory in VS Code:
+                        <pre><code>code C:\Users\mohdz\.ssh</code></pre>
+                        <div class="output">
+                            <div class="output-title">✅ Expected Output:</div>
+                            <pre><code>(VS Code will open with the .ssh directory)</code></pre>
+                        </div>
+                    </li>
+
+                    <li>Create a new file named <code>config</code> (without any extension) in the <code>.ssh</code> directory.</li>
+
+                    <li>Add the following configuration to the <code>config</code> file:
+                        <pre><code># Personal GitHub
+Host github.com-personal
+    HostName github.com
+    User git
+    IdentityFile C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_personal
+
+# Work GitHub
+Host github.com-test
+    HostName github.com
+    User git
+    IdentityFile C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test</code></pre>
+                    </li>
+                </ol>
+
+                <div class="warning">
+                    <strong>⚠️ Note:</strong> If you accidentally create a <code>config.txt</code> file, rename it:
+                    <pre><code>rename-item C:\Users\mohdz\.ssh\config.txt config</code></pre>
+                </div>
+            </div>
+
+            <div class="step">
+                <h3><span class="step-number">7</span>Test SSH Connections</h3>
+                <p>Verify that both accounts are properly configured:</p>
+
+                <pre><code># Test personal account connection
+ssh -T git@github.com-personal</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Hi moxdzahid! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                </div>
+
+                <pre><code># Test work account connection
+ssh -T git@github.com-test</code></pre>
+
+                <div class="output">
+                    <div class="output-title">✅ Expected Output:</div>
+                    <pre><code>Hi &lt;your-work-username&gt;! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                </div>
+            </div>
+
+            <h2>🔧 Working with Repositories</h2>
+
+            
+
+            <h3>Updating Existing Repository Remote URLs</h3>
+            <p>For existing repositories, update the remote URL to use the correct account:</p>
+
+            <pre><code># Check current remote
+git remote -v</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>origin  git@github.com:username/repo-name.git (fetch)
+origin  git@github.com:username/repo-name.git (push)</code></pre>
+            </div>
+
+            <pre><code># Update to use personal account on personal project
+git remote set-url origin git@github.com-personal:username/repo-name.git</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>(No output means success)</code></pre>
+            </div>
+
+            <pre><code># Update to use work account on thier work project file
+git remote set-url origin git@github.com-test:username/repo-name.git</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>(No output means success)</code></pre>
+            </div>
+
+            <h3>Example Usage</h3>
+            <pre><code># Example: Update existing repository to use personal account
+git remote set-url origin git@github.com-personal:moxdzahid/Quizz-App.git
+
+# Make changes and push
+git add .
+git commit -m "Initial commit"
+git push -u origin main</code></pre>
+
+            <h2>🔍 Troubleshooting</h2>
+
+            <h3>Common Issues</h3>
+            <ul>
+                <li><strong>Permission Denied:</strong> Ensure SSH keys are added to ssh-agent and GitHub</li>
+                <li><strong>Wrong Account Used:</strong> Check remote URL uses correct host alias</li>
+                <li><strong>SSH Agent Not Running:</strong> Enable OpenSSH Authentication Agent service in services.msc</li>
+                <li><strong>Service Access Denied:</strong> Run command prompt as Administrator when configuring services</li>
+                <li><strong>Keys Not Persisting:</strong> Ensure OpenSSH Authentication Agent startup type is set to "Automatic"</li>
+            </ul>
+
+            <h3>Useful Commands</h3>
+
+            <pre><code># Check SSH agent status
+ssh-add -l</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>3072 SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx zahid12311@gmail.com (RSA)
+3072 SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx servicesmzkindustries@gmail.com (RSA)</code></pre>
+            </div>
+
+            <pre><code># Check if OpenSSH Authentication Agent service is running
+sc query "OpenSSH Authentication Agent"</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>SERVICE_NAME: OpenSSH Authentication Agent
+        TYPE               : 10  WIN32_OWN_PROCESS
+        STATE              : 4  RUNNING
+                                (STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0</code></pre>
+            </div>
+
+            <pre><code># Start the service manually
+net start "OpenSSH Authentication Agent"</code></pre>
+
+            <div class="output">
+                <div class="output-title">✅ Expected Output:</div>
+                <pre><code>The OpenSSH Authentication Agent service is starting.
+The OpenSSH Authentication Agent service was started successfully.</code></pre>
+            </div>
+
+            <div class="output">
+                <div class="output-title">✅ Or (if already running):</div>
+                <pre><code>The requested service has already been started.</code></pre>
+            </div>
+
+            <h2>🔐 Security Best Practices</h2>
+            <ul>
+                <li><strong>Keep private keys secure</strong> - Never share or commit private key files</li>
+                <li><strong>Use strong passphrases</strong> for SSH keys (optional but recommended)</li>
+                <li><strong>Regularly rotate keys</strong> for enhanced security</li>
+                <li><strong>Use descriptive names</strong> for SSH keys on GitHub</li>
+                <li><strong>Monitor SSH key usage</strong> in GitHub settings</li>
+            </ul>
+
+            <h2>📁 File Structure</h2>
+            <p>Your SSH setup should look like this:</p>
+            <div class="file-structure">
+                <pre>C:\Users\mohdz\
+├── .ssh\
+│   └── config
+└── OneDrive\Desktop\GitHub-Accounts\
+    └── .ssh\
+        ├── id_rsa_personal
+        ├── id_rsa_personal.pub
+        ├── id_rsa_test
+        └── id_rsa_test.pub</pre>
+            </div>
+
+            <h2>🎉 Conclusion</h2>
+            <p>This setup allows you to seamlessly work with multiple GitHub accounts without authentication conflicts. Remember to use the correct host alias (<code>github.com-personal</code> or <code>github.com-test</code>) when working with repositories to ensure you're using the right account credentials.</p>
+        </div>
+
+        <footer>
+            <p>© 2025 Mohd Zahid Khan. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
