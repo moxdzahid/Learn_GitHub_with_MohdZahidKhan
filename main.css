@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+}
+
+.main-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.main-header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+}
+
+.tab-navigation {
+    display: flex;
+    background: #f8f9fa;
+    padding: 0;
+    border-bottom: 3px solid #e9ecef;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 20px 25px;
+    background: transparent;
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    min-width: 200px;
+}
+
+.tab-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.tab-btn.active {
+    background: white;
+    color: #667eea;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.content-area {
+    background: #f8f9fa;
+    min-height: calc(100vh - 250px);
+    position: relative;
+}
+
+#content-frame {
+    width: 100%;
+    min-height: calc(100vh - 250px);
+    border: none;
+    background: white;
+    transition: opacity 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .main-header h1 {
+        font-size: 1.8em;
+    }
+
+    .main-header p {
+        font-size: 0.95em;
+    }
+
+    .main-header {
+        padding: 25px 20px;
+    }
+
+    .tab-btn {
+        padding: 15px 20px;
+        font-size: 0.9em;
+        min-width: 150px;
+    }
+
+    .content-area {
+        min-height: calc(100vh - 200px);
+    }
+
+    #content-frame {
+        min-height: calc(100vh - 200px);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header h1 {
+        font-size: 1.5em;
+    }
+
+    .tab-btn {
+        padding: 12px 15px;
+        font-size: 0.85em;
+        min-width: 140px;
+    }
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.content-area {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.main-footer {
+    background: #2d3748;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.95em;
+}

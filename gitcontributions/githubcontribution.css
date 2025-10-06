@@ -13,7 +13,6 @@ body {
 }
 
 .container {
-    max-width: 1200px;
     margin: 0 auto;
     background: white;
     border-radius: 15px;
@@ -24,7 +23,7 @@ body {
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 40px;
+    padding: 10px 30px;
     text-align: center;
 }
 
@@ -231,14 +230,6 @@ tr:last-child td {
 .toc a:hover {
     color: #764ba2;
     padding-left: 10px;
-}
-
-footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
 }
 
 @media (max-width: 768px) {

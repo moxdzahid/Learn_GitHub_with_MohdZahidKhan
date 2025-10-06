@@ -64,8 +64,6 @@ section {
     font-size: 1.2em;
     color: #555;
     line-height: 1.8;
-    display: flex;
-    justify-content: start;
 }
 
 h2 {
