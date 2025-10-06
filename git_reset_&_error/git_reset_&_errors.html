@@ -12,13 +12,13 @@
     <div class="container">
         <header>
             <h1>🔄 Git Reset & Fix Errors Guide</h1>
-            <p>Previous commit pe wapas jaane aur errors fix karne ka complete guide</p>
+            <p>Complete guide to go back to previous commits and fix errors</p>
         </header>
 
         <div class="content">
-            <h2>🔍 Commit Hash Kaise Dhundhe?</h2>
+            <h2>🔍 How to Find Commit Hash?</h2>
 
-            <h3>Puri History Dekho</h3>
+            <h3>View Full History</h3>
             <pre><code>git log</code></pre>
 
             <div class="output">
@@ -66,21 +66,21 @@ b2a1c0d Initial commit</code></pre>
             </div>
 
             <div class="note">
-                <strong>💡 Tip:</strong> Jo commit chahiye uska hash copy karo (e.g., <code>f6a3064</code>)
+                <strong>💡 Tip:</strong> Copy the hash of the commit you need (e.g., <code>f6a3064</code>)
             </div>
 
-            <h2>📌 Kab Use Karein?</h2>
+            <h2>📌 When to Use?</h2>
             <ul>
-                <li>Jab recent commits mein critical errors ho</li>
-                <li>Working version pe wapas jana ho</li>
-                <li>Previous stable commit se fresh start karna ho</li>
-                <li>History rewrite karni ho</li>
+                <li>When recent commits have critical errors</li>
+                <li>Need to go back to a working version</li>
+                <li>Want to start fresh from a previous stable commit</li>
+                <li>Need to rewrite history</li>
             </ul>
 
             <h2>🔧 Complete Process</h2>
 
             <div class="step">
-                <h3><span class="step-number">1</span>Main Branch Pe Raho</h3>
+                <h3><span class="step-number">1</span>Stay on Main Branch</h3>
                 <pre><code>git checkout main</code></pre>
 
                 <div class="output">
@@ -89,7 +89,7 @@ b2a1c0d Initial commit</code></pre>
 Your branch is up to date with 'origin/main'.</code></pre>
                 </div>
 
-                <p><strong>Check karo ki aap sahi branch pe ho:</strong></p>
+                <p><strong>Check that you're on the correct branch:</strong></p>
                 <pre><code>git branch</code></pre>
 
                 <div class="output">
@@ -100,12 +100,12 @@ Your branch is up to date with 'origin/main'.</code></pre>
                 </div>
 
                 <div class="note">
-                    <strong>📝 Note:</strong> <code>*</code> (asterisk) current branch ko indicate karta hai
+                    <strong>📝 Note:</strong> The <code>*</code> (asterisk) indicates the current branch
                 </div>
             </div>
 
             <div class="step">
-                <h3><span class="step-number">2</span>Previous Commit Ka Code Le Aao</h3>
+                <h3><span class="step-number">2</span>Get Code from Previous Commit</h3>
                 <pre><code>git reset --hard &lt;previous_commit_hash&gt;</code></pre>
 
                 <h4>Example:</h4>
@@ -117,28 +117,28 @@ Your branch is up to date with 'origin/main'.</code></pre>
                 </div>
 
                 <div class="info-box">
-                    <h4>Kya Hoga:</h4>
+                    <h4>What Will Happen:</h4>
                     <ul>
-                        <li>✅ Main branch ka HEAD previous commit pe move ho jayega</li>
-                        <li>✅ History ab purane commit tak revert ho jayegi</li>
-                        <li>✅ Working directory bhi us commit ke code pe set ho jayegi</li>
-                        <li>✅ Detached HEAD state nahi hoga</li>
+                        <li>✅ Main branch HEAD will move to the previous commit</li>
+                        <li>✅ History will revert back to that old commit</li>
+                        <li>✅ Working directory will also be set to that commit's code</li>
+                        <li>✅ No detached HEAD state will occur</li>
                     </ul>
                 </div>
             </div>
 
             <div class="step">
                 <h3><span class="step-number">3</span>Fix Errors</h3>
-                <p>Apna code edit karo aur errors fix karo:</p>
+                <p>Edit your code and fix the errors:</p>
                 <ol>
-                    <li>Project files open karo</li>
-                    <li>Necessary changes karo</li>
-                    <li>Sabhi errors fix karo</li>
-                    <li>Code test karo</li>
+                    <li>Open project files</li>
+                    <li>Make necessary changes</li>
+                    <li>Fix all errors</li>
+                    <li>Test the code</li>
                 </ol>
 
                 <div class="note">
-                    <strong>💡 Tip:</strong> Changes save karne ke baad <code>git status</code> se verify karo
+                    <strong>💡 Tip:</strong> After saving changes, verify with <code>git status</code>
                 </div>
 
                 <pre><code>git status</code></pre>
@@ -160,9 +160,9 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
             </div>
 
             <div class="step">
-                <h3><span class="step-number">4</span>Stage Aur Commit</h3>
+                <h3><span class="step-number">4</span>Stage and Commit</h3>
 
-                <h4>Sabhi changes stage karo:</h4>
+                <h4>Stage all changes:</h4>
                 <pre><code>git add .</code></pre>
 
                 <div class="output">
@@ -170,7 +170,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
                     <pre><code>(No output means success)</code></pre>
                 </div>
 
-                <h4>Ya specific files add karo:</h4>
+                <h4>Or add specific files:</h4>
                 <pre><code>git add filename.txt</code></pre>
 
                 <div class="output">
@@ -178,7 +178,7 @@ no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
                     <pre><code>(No output means success)</code></pre>
                 </div>
 
-                <h4>Commit karo:</h4>
+                <h4>Commit the changes:</h4>
                 <pre><code>git commit -m "Fix errors from previous commit"</code></pre>
 
                 <div class="output">
@@ -206,32 +206,32 @@ To https://github.com/username/project-name.git
                 </div>
 
                 <div class="warning">
-                    <strong>⚠️ Important:</strong> <code>--force</code> zaruri hai kyunki aapne history change ki hai. Lekin yeh carefully use karein!
+                    <strong>⚠️ Important:</strong> <code>--force</code> is necessary because you've changed the history. But use it carefully!
                 </div>
             </div>
 
             <h2>✅ Best Practices</h2>
 
             <div class="info-box">
-                <h4>1. Backup banao pehle:</h4>
+                <h4>1. Create a backup first:</h4>
                 <pre><code>git branch backup-before-reset</code></pre>
                 <div class="output">
                     <div class="output-title">✅ Expected Output:</div>
                     <pre><code>(No output means success - branch created)</code></pre>
                 </div>
 
-                <h4>2. Commit hash verify karo:</h4>
-                <p>Double-check karo kis commit pe jana hai</p>
+                <h4>2. Verify the commit hash:</h4>
+                <p>Double-check which commit you want to go to</p>
 
-                <h4>3. Team ko inform karo:</h4>
-                <p>Force push se pehle batao</p>
+                <h4>3. Inform your team:</h4>
+                <p>Let them know before force pushing</p>
 
-                <h4>4. Test karo:</h4>
-                <p>Reset ke baad test karo ki sab kaam kar raha hai</p>
+                <h4>4. Test everything:</h4>
+                <p>After reset, test that everything is working</p>
 
-                <h4>5. Force-with-lease use karo:</h4>
+                <h4>5. Use force-with-lease:</h4>
                 <pre><code>git push origin main --force-with-lease</code></pre>
-                <p>Team projects mein yeh safer hai</p>
+                <p>This is safer for team projects</p>
 
                 <div class="output">
                     <div class="output-title">✅ Expected Output:</div>
