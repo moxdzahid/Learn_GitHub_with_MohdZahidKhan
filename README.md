@@ -4,7 +4,7 @@ A complete, beginner-friendly guide to master Git and GitHub with practical exam
 
 ## 🌐 Live Demo
 
-**👉 [Visit Live Site](https://moxdzahid.github.io/Learn_GitHub_with_MohdZahidKhan/)**
+**👉 [Visit Live Site](https://learn-github-with-mohdzahidkhan.netlify.app/)**
 
 Access the full interactive tutorial directly in your browser!
 
@@ -75,7 +75,7 @@ Manage multiple GitHub accounts on one machine seamlessly (Windows & Mac).
 ## 🚀 Getting Started
 
 ### Option 1: View Online (Recommended)
-Visit the live site: **[https://moxdzahid.github.io/Learn_GitHub_with_MohdZahidKhan/](https://moxdzahid.github.io/Learn_GitHub_with_MohdZahidKhan/)**
+Visit the live site: **[https://learn-github-with-mohdzahidkhan.netlify.app/](https://learn-github-with-mohdzahidkhan.netlify.app/)**
 
 ### Option 2: Clone Repository
 ```bash
