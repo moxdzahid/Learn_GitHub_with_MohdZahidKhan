@@ -35,10 +35,28 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f8f9fa;
+}
+
+.tab-navigation::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tab-navigation::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+.tab-navigation::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 2px;
 }
 
 .tab-btn {
-    flex: 1;
+    flex: 1 0 auto;
     padding: 20px 25px;
     background: transparent;
     border: none;
@@ -87,9 +105,16 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .tab-btn {
+        min-width: 180px;
+        padding: 18px 20px;
+    }
+}
+
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 0;
     }
 
     .main-header h1 {
@@ -101,13 +126,18 @@ body {
     }
 
     .main-header {
-        padding: 25px 20px;
+        padding: 20px 15px;
+    }
+
+    .tab-navigation {
+        justify-content: flex-start;
     }
 
     .tab-btn {
-        padding: 15px 20px;
+        flex: 0 0 auto;
+        padding: 15px 18px;
         font-size: 0.9em;
-        min-width: 150px;
+        min-width: 160px;
     }
 
     .content-area {
@@ -121,13 +151,51 @@ body {
 
 @media (max-width: 480px) {
     .main-header h1 {
-        font-size: 1.5em;
+        font-size: 1.4em;
+        margin-bottom: 5px;
+    }
+
+    .main-header p {
+        font-size: 0.85em;
+    }
+
+    .main-header {
+        padding: 15px 10px;
     }
 
     .tab-btn {
         padding: 12px 15px;
-        font-size: 0.85em;
+        font-size: 0.8em;
         min-width: 140px;
+    }
+
+    .main-footer {
+        padding: 15px 10px;
+        font-size: 0.85em;
+    }
+
+    .content-area {
+        min-height: calc(100vh - 180px);
+    }
+
+    #content-frame {
+        min-height: calc(100vh - 180px);
+    }
+}
+
+@media (max-width: 360px) {
+    .main-header h1 {
+        font-size: 1.2em;
+    }
+
+    .main-header p {
+        font-size: 0.8em;
+    }
+
+    .tab-btn {
+        padding: 10px 12px;
+        font-size: 0.75em;
+        min-width: 120px;
     }
 }
 

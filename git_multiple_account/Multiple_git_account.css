@@ -13,6 +13,18 @@ body {
     padding: 20px;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+}
+
 .container {
     margin: 0 auto;
     background: white;
@@ -180,16 +192,197 @@ footer {
     padding: 20px;
 }
 
+@media (max-width: 1024px) {
+    .content {
+        padding: 30px;
+    }
+
+    pre {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
-        margin: 10px;
+        margin: 0;
+        border-radius: 10px;
+    }
+
+    header {
+        padding: 30px 20px;
     }
 
     header h1 {
-        font-size: 1.8em;
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1.05em;
     }
 
     .content {
-        padding: 20px;
+        padding: 25px 20px;
+    }
+
+    h2 {
+        font-size: 1.6em;
+        margin-top: 25px;
+    }
+
+    h3 {
+        font-size: 1.3em;
+        margin-top: 20px;
+    }
+
+    h4 {
+        font-size: 1.15em;
+    }
+
+    ul, ol {
+        margin-left: 25px;
+    }
+
+    pre {
+        padding: 15px;
+        font-size: 0.85em;
+        overflow-x: scroll;
+    }
+
+    .step {
+        padding: 15px;
+    }
+
+    .output, .note, .warning, .info-box {
+        padding: 12px;
+        margin: 12px 0;
+    }
+
+    .file-structure {
+        padding: 15px;
+        font-size: 0.9em;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        border-radius: 8px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 1.6em;
+        margin-bottom: 5px;
+    }
+
+    header p {
+        font-size: 0.95em;
+    }
+
+    .content {
+        padding: 20px 12px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+        margin-top: 20px;
+        margin-bottom: 12px;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin-top: 15px;
+        margin-bottom: 12px;
+    }
+
+    h4 {
+        font-size: 1.1em;
+        margin-top: 12px;
+    }
+
+    p {
+        margin-bottom: 12px;
+        font-size: 0.95em;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+    }
+
+    pre {
+        padding: 12px;
+        font-size: 0.75em;
+        margin: 12px 0;
+    }
+
+    code {
+        font-size: 0.85em;
+        padding: 2px 4px;
+    }
+
+    .step {
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    .step-number {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 0.9em;
+        margin-right: 8px;
+    }
+
+    .output, .note, .warning, .info-box {
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 0.95em;
+    }
+
+    .output-title {
+        font-size: 0.95em;
+    }
+
+    .file-structure {
+        padding: 12px;
+        font-size: 0.8em;
+    }
+
+    footer {
+        padding: 15px 10px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.4em;
+    }
+
+    header p {
+        font-size: 0.85em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    h3 {
+        font-size: 1.1em;
+    }
+
+    pre {
+        font-size: 0.7em;
+        padding: 10px;
     }
 }
