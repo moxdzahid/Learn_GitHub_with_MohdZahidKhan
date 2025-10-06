@@ -85,6 +85,9 @@
                 <div class="note">
                     <strong>💡 Why this is important:</strong> The SSH Agent service manages your SSH keys in memory, allowing you to authenticate without entering your passphrase repeatedly.
                 </div>
+                <div class="note">
+                    <strong>🍎 Mac Users:</strong> This step is not required on macOS as ssh-agent runs automatically in the background by default.
+                </div>
             </div>
 
             <div class="step">
@@ -169,6 +172,9 @@ cat "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test.pub"</code
             <div class="step">
                 <h3><span class="step-number">5</span>Configure SSH Agent</h3>
                 <p>Clear existing keys and add your new keys:</p>
+                <div class="note">
+                    <strong>🍎 Mac Users:</strong> On macOS, ssh-agent runs automatically. You can optionally add keys to macOS Keychain using <code>ssh-add --apple-use-keychain</code> for permanent storage.
+                </div>
 
                 <pre><code># List current SSH keys
 ssh-add -l</code></pre>
@@ -213,7 +219,7 @@ ssh-add "C:\Users\mohdz\OneDrive\Desktop\GitHub-Accounts\.ssh\id_rsa_test"</code
                 <h3><span class="step-number">6</span>Create SSH Config File</h3>
                 <p>Create an SSH configuration file to manage multiple accounts:</p>
 
-                <h4>Creating the SSH Config File:</h4>
+                <h4>🪟 For Windows Users:</h4>
                 <ol>
                     <li>Navigate to your SSH directory:
                         <pre><code>cd C:\Users\mohdz\.ssh</code></pre>
@@ -256,6 +262,65 @@ Host github.com-test
                 <div class="warning">
                     <strong>⚠️ Note:</strong> If you accidentally create a <code>config.txt</code> file, rename it:
                     <pre><code>rename-item C:\Users\mohdz\.ssh\config.txt config</code></pre>
+                </div>
+
+                <h4>🍎 For Mac Users:</h4>
+                <ol>
+                    <li>Open Terminal and create/edit the SSH config file:
+                        <pre><code>nano ~/.ssh/config</code></pre>
+                        <div class="note">
+                            <strong>📝 Note:</strong> If the <code>.ssh</code> folder doesn't exist, create it first:
+                            <pre><code>mkdir -p ~/.ssh</code></pre>
+                        </div>
+                    </li>
+
+                    <li>Add the following configuration (replace with your actual paths):
+                        <pre><code># Personal GitHub
+Host github.com-personal
+    HostName github.com
+    User git
+    IdentityFile "/Users/bhoomivishwakarma/Desktop/GitHub Accounts/.ssh/id_rsa_personal"
+    IdentitiesOnly yes
+
+# Work GitHub
+Host github.com-test
+    HostName github.com
+    User git
+    IdentityFile "/Users/bhoomivishwakarma/Desktop/GitHub Accounts/.ssh/id_rsa_work"
+    IdentitiesOnly yes</code></pre>
+                    </li>
+
+                    <li>Save and exit nano:
+                        <ul>
+                            <li>Press <code>CTRL + O</code> to save</li>
+                            <li>Press <code>Enter</code> to confirm</li>
+                            <li>Press <code>CTRL + X</code> to exit</li>
+                        </ul>
+                    </li>
+
+                    <li>Fix file permissions (important for Mac):
+                        <pre><code># Fix SSH key permissions
+chmod 600 "/Users/bhoomivishwakarma/Desktop/GitHub Accounts/.ssh/id_rsa_personal"
+chmod 600 "/Users/bhoomivishwakarma/Desktop/GitHub Accounts/.ssh/id_rsa_work"
+
+# Fix config file permissions
+chmod 600 ~/.ssh/config</code></pre>
+                        
+                        <div class="output">
+                            <div class="output-title">✅ Expected Output:</div>
+                            <pre><code>(No output means the permissions were set successfully)</code></pre>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>🔑 Key Differences for Mac Config:</h4>
+                    <ul>
+                        <li><strong>Quotes Required:</strong> Use double quotes around paths with spaces (e.g., "GitHub Accounts")</li>
+                        <li><strong>IdentitiesOnly yes:</strong> Forces SSH to use only the specified key, preventing conflicts</li>
+                        <li><strong>Permissions Matter:</strong> Mac requires strict 600 permissions on SSH keys and config file</li>
+                        <li><strong>Forward Slashes:</strong> Mac uses <code>/</code> instead of Windows <code>\</code> in paths</li>
+                    </ul>
                 </div>
             </div>
 
