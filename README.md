@@ -51,11 +51,13 @@ Fix your last commit message or add forgotten files easily.
 - Safe amending practices
 
 ### 5. 👥 [Multiple Git Accounts](./git_multiple_account/)
-Manage multiple GitHub accounts on one machine seamlessly.
-- Setting up SSH keys
-- Configuring different accounts
-- Switching between accounts
-- Avoiding common pitfalls
+Manage multiple GitHub accounts on one machine seamlessly (Windows & Mac).
+- Setting up SSH keys for both platforms
+- Configuring different accounts with proper SSH config
+- Platform-specific instructions (Windows & macOS)
+- SSH Agent setup (automatic on Mac, manual on Windows)
+- Switching between accounts effortlessly
+- Avoiding common pitfalls and authentication issues
 
 ---
 
@@ -66,6 +68,7 @@ Manage multiple GitHub accounts on one machine seamlessly.
 - **🎯 Step-by-Step Guides** - Easy to follow instructions
 - **✨ Visual Examples** - Real terminal outputs shown
 - **🔍 Searchable Content** - Quick reference for commands
+- **🪟🍎 Cross-Platform Support** - Instructions for both Windows and Mac users
 
 ---
 
