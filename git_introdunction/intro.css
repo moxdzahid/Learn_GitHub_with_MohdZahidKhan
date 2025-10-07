@@ -76,8 +76,7 @@ section {
     font-size: 1.2em;
     color: #555;
     line-height: 1.8;
-    display: flex;
-    justify-content: start;
+    text-align: left;
 }
 
 h2 {
@@ -214,9 +213,28 @@ h2 {
     border-radius: 12px;
 }
 
+@media (max-width: 900px) {
+    .comparison-box {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .vs-divider {
+        transform: none;
+        padding: 15px 0;
+        margin: 10px 0;
+        font-size: 2.5em;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
 .comparison-item {
     text-align: center;
     padding: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .comparison-item h3 {
@@ -229,6 +247,8 @@ h2 {
     padding: 10px 0;
     color: #4a5568;
     font-size: 1.05em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .vs-divider {
@@ -507,14 +527,7 @@ h2 {
     }
 
     .comparison-box {
-        grid-template-columns: 1fr;
-        gap: 15px;
         padding: 20px;
-    }
-
-    .vs-divider {
-        transform: rotate(90deg);
-        padding: 10px 0;
     }
 
     .workflow-diagram {
